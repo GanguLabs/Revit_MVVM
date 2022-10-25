@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>Revit MVVM</Name>
+    <Assembly>Revit_MVVM\Revit_MVVM.dll</Assembly>
+    <AddInId>D018DCB1-C930-4687-B112-20BCE49A4DD0</AddInId>
+    <FullClassName>Revit_MVVM.Main</FullClassName>
+    <VendorId>Anwesh Gangula</VendorId>
+    <Publisher>Anwesh Gangula</Publisher>
+    <VendorDescription>An Example Revit WPF MVVM Project.</VendorDescription>
+  </AddIn>
+</RevitAddIns>
