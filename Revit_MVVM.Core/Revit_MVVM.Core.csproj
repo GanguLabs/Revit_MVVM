@@ -50,6 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AnnotatePanel\TagWallLayersCommand.cs" />
+    <Compile Include="Commands\Helpers\Message.cs" />
+    <Compile Include="Commands\Helpers\SelectionFilterCategory.cs" />
+    <Compile Include="Commands\Helpers\WindowType.cs" />
     <Compile Include="CoreAssembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
