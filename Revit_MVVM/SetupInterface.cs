@@ -23,6 +23,7 @@ namespace Revit_MVVM
             app.CreateRibbonTab(tabName);
 
             var annotationCommandsPanel = app.CreateRibbonPanel(tabName, "Annotation Commands");
+            var managerCommandsPanel = app.CreateRibbonPanel(tabName, "Family Manager Commands");
 
             RevitPushButtonDataModel TagWallButtonData = new RevitPushButtonDataModel
             {
@@ -35,6 +36,29 @@ namespace Revit_MVVM
             };
 
             var TagWallButton = RevitPushButton.Create(TagWallButtonData);
+
+            var familyManagerShowButtonData = new RevitPushButtonDataModel
+            {
+                Label = "Show Family Manager",
+                Panel = managerCommandsPanel,
+                Tooltip = "Show Family Manager Window",
+                CommandNamespacePath= ShowFamilyManagerCommand.GetPath(),
+                IconImageName = "revitLogo32.png",
+                TooltipImageName = "revitLogo32.png",
+            };
+            var familyManagerShowButton = RevitPushButton.Create(familyManagerShowButtonData);
+
+            var familyManagerHideButtonData = new RevitPushButtonDataModel
+            {
+                Label = "Hide Family Manager",
+                Panel = managerCommandsPanel,
+                Tooltip = "Hide Family Manager Window",
+                CommandNamespacePath = HideFamilyManagerCommand.GetPath(),
+                IconImageName = "revitLogo32.png",
+                TooltipImageName = "revitLogo32.png",
+            };
+            var familyManagerHideButton = RevitPushButton.Create(familyManagerHideButtonData);
+
         }
     }
 }

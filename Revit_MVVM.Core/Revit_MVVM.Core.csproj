@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AnnotatePanel\FamilyManager\HideFamilyManagerCommand.cs" />
+    <Compile Include="Commands\AnnotatePanel\FamilyManager\ShowFamilyManagerCommand.cs" />
     <Compile Include="Commands\AnnotatePanel\TagWallLayers\TagWallLayersCommand.cs" />
     <Compile Include="Commands\AnnotatePanel\TagWallLayers\TagWallLayersCommandData.cs" />
     <Compile Include="Commands\AnnotatePanel\TagWallLayers\TagWallLayersForm.cs">
@@ -63,6 +65,7 @@
     <Compile Include="Commands\Helpers\Message.cs" />
     <Compile Include="Commands\Helpers\SelectionFilterCategory.cs" />
     <Compile Include="Commands\Helpers\WindowType.cs" />
+    <Compile Include="Commands\PaneIdentifiers.cs" />
     <Compile Include="CoreAssembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\Units\LengthUnitConverter.cs" />
