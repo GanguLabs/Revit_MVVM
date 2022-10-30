@@ -14,6 +14,10 @@ namespace Revit_MVVM.Core
         public bool Thickness { get; set; }
         public ElementId TextTypeId { get; set; }
 
+        public LengthUnitType UnitType { get; set; }
+
+        public int Decimals { get; set; }
+
         public TagWallLayersCommandData()
         {
 

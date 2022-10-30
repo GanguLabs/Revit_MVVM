@@ -95,10 +95,19 @@ namespace Revit_MVVM.Core
                     msg.Append(layer.Function.ToString());
 
                 if (userInfo.Name)
-                    msg.Append(" " + material.Name);
+                {
+                    if(material != null)
+                    {
+                        msg.Append(" " + material.Name);
+                    }
+                    else
+                    {
+                        msg.Append(" <by category>");
+                    }
+                }
 
                 if (userInfo.Thickness)
-                    msg.Append(" " + layer.Width.ToString());
+                    msg.Append(" " + LengthUnitConverter.ConvertToMetric(layer.Width, userInfo.UnitType, userInfo.Decimals).ToString());
             }
 
             var textNoteOptions = new TextNoteOptions

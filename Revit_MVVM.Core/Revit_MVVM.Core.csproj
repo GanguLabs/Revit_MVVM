@@ -59,11 +59,13 @@
     <Compile Include="Commands\AnnotatePanel\TagWallLayers\TagWallLayersForm.Designer.cs">
       <DependentUpon>TagWallLayersForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Commands\Helpers\LengthUnitType.cs" />
     <Compile Include="Commands\Helpers\Message.cs" />
     <Compile Include="Commands\Helpers\SelectionFilterCategory.cs" />
     <Compile Include="Commands\Helpers\WindowType.cs" />
     <Compile Include="CoreAssembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\Units\LengthUnitConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Commands\AnnotatePanel\TagWallLayers\TagWallLayersForm.resx">

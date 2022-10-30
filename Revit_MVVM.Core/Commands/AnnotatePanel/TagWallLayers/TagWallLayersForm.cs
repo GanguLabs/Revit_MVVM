@@ -16,6 +16,9 @@ namespace Revit_MVVM.Core
     {
         private UIDocument uidoc = null;
         private ElementId textTypeId = null;
+        private LengthUnitType unitType = LengthUnitType.millimeter;
+        private int decimals = 1;
+
         public TagWallLayersForm(UIDocument uIDocument)
         {
             InitializeComponent();
@@ -37,11 +40,23 @@ namespace Revit_MVVM.Core
         private void TagWallLayersForm_Load(object sender, EventArgs e)
         {
             PopulateTextNoteTypeList();
+            PopulateUnitTypeList();
+            PopulateDecimalPlacesList();
         }
 
         private void cmbTextNoteElementType_SelectedIndexChanged(object sender, EventArgs e)
         {
             textTypeId = ((KeyValuePair<string, ElementId>)cmbTextNoteElementType.SelectedItem).Value;
+        }
+
+        private void cmbUnitType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            unitType = (LengthUnitType)cmbUnitType.SelectedItem;
+        }
+
+        private void cmbDecimalPlaces_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            decimals = (int)cmbDecimalPlaces.SelectedItem;
         }
 
         public TagWallLayersCommandData GetInformaion()
@@ -51,7 +66,9 @@ namespace Revit_MVVM.Core
                 Function = chkFunction.Checked,
                 Name = chkName.Checked,
                 Thickness = chkThickness.Checked,
-                TextTypeId = textTypeId
+                TextTypeId = textTypeId,
+                UnitType = unitType,
+                Decimals = decimals,
             };
 
             return information;
@@ -75,6 +92,24 @@ namespace Revit_MVVM.Core
 
             cmbTextNoteElementType.DisplayMember = "Key";
             cmbTextNoteElementType.ValueMember = "Value";
+        }
+
+        private void PopulateUnitTypeList()
+        {
+            cmbUnitType.DataSource = Enum.GetValues(typeof(LengthUnitType));
+        }
+
+        private void PopulateDecimalPlacesList()
+        {
+            var values = new List<int>() { 0, 1, 2, 3};
+
+            var source = new BindingSource
+            {
+                DataSource = values,
+            };
+
+            cmbDecimalPlaces.DataSource = source.DataSource;
+            cmbDecimalPlaces.SelectedItem = values[2];
         }
 
     }

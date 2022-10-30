@@ -36,12 +36,18 @@
             this.chkName = new System.Windows.Forms.CheckBox();
             this.cmbTextNoteElementType = new System.Windows.Forms.ComboBox();
             this.chkFunction = new System.Windows.Forms.CheckBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cmbUnitType = new System.Windows.Forms.ComboBox();
+            this.lblUnitType = new System.Windows.Forms.Label();
+            this.lblDecPlaces = new System.Windows.Forms.Label();
+            this.cmbDecimalPlaces = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(100, 194);
+            this.btnOk.Location = new System.Drawing.Point(100, 321);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 0;
@@ -52,7 +58,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(181, 194);
+            this.btnCancel.Location = new System.Drawing.Point(181, 321);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
@@ -79,9 +85,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(4, 111);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Text Note Type";
+            this.label1.Text = "Text Type";
             // 
             // chkThickness
             // 
@@ -128,20 +134,73 @@
             this.chkFunction.Text = "Function";
             this.chkFunction.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lblDecPlaces);
+            this.groupBox2.Controls.Add(this.cmbDecimalPlaces);
+            this.groupBox2.Controls.Add(this.lblUnitType);
+            this.groupBox2.Controls.Add(this.cmbUnitType);
+            this.groupBox2.Location = new System.Drawing.Point(13, 180);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(243, 123);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Units";
+            // 
+            // cmbUnitType
+            // 
+            this.cmbUnitType.FormattingEnabled = true;
+            this.cmbUnitType.Location = new System.Drawing.Point(6, 36);
+            this.cmbUnitType.Name = "cmbUnitType";
+            this.cmbUnitType.Size = new System.Drawing.Size(230, 21);
+            this.cmbUnitType.TabIndex = 0;
+            this.cmbUnitType.SelectedIndexChanged += new System.EventHandler(this.cmbUnitType_SelectedIndexChanged);
+            // 
+            // lblUnitType
+            // 
+            this.lblUnitType.AutoSize = true;
+            this.lblUnitType.Location = new System.Drawing.Point(6, 20);
+            this.lblUnitType.Name = "lblUnitType";
+            this.lblUnitType.Size = new System.Drawing.Size(53, 13);
+            this.lblUnitType.TabIndex = 1;
+            this.lblUnitType.Text = "Unit Type";
+            // 
+            // lblDecPlaces
+            // 
+            this.lblDecPlaces.AutoSize = true;
+            this.lblDecPlaces.Location = new System.Drawing.Point(5, 72);
+            this.lblDecPlaces.Name = "lblDecPlaces";
+            this.lblDecPlaces.Size = new System.Drawing.Size(80, 13);
+            this.lblDecPlaces.TabIndex = 3;
+            this.lblDecPlaces.Text = "Decimal Places";
+            // 
+            // cmbDecimalPlaces
+            // 
+            this.cmbDecimalPlaces.FormattingEnabled = true;
+            this.cmbDecimalPlaces.Location = new System.Drawing.Point(5, 88);
+            this.cmbDecimalPlaces.Name = "cmbDecimalPlaces";
+            this.cmbDecimalPlaces.Size = new System.Drawing.Size(230, 21);
+            this.cmbDecimalPlaces.TabIndex = 2;
+            this.cmbDecimalPlaces.SelectedIndexChanged += new System.EventHandler(this.cmbDecimalPlaces_SelectedIndexChanged);
+            // 
             // TagWallLayersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(268, 229);
+            this.ClientSize = new System.Drawing.Size(269, 356);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
+            this.MaximumSize = new System.Drawing.Size(285, 395);
             this.Name = "TagWallLayersForm";
             this.Text = "Tag Options";
             this.Load += new System.EventHandler(this.TagWallLayersForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -156,5 +215,10 @@
         private System.Windows.Forms.CheckBox chkName;
         private System.Windows.Forms.ComboBox cmbTextNoteElementType;
         private System.Windows.Forms.CheckBox chkFunction;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lblDecPlaces;
+        private System.Windows.Forms.ComboBox cmbDecimalPlaces;
+        private System.Windows.Forms.Label lblUnitType;
+        private System.Windows.Forms.ComboBox cmbUnitType;
     }
 }
