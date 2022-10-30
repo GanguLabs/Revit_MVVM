@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Revit_MVVM.Core
 {
@@ -25,7 +26,7 @@ namespace Revit_MVVM.Core
                 return Result.Cancelled;
             }
 
-            View activeView = uiDoc.ActiveView;
+            Autodesk.Revit.DB.View activeView = uiDoc.ActiveView;
 
             bool canCreateTextNoteInView = false;
 
@@ -41,15 +42,31 @@ namespace Revit_MVVM.Core
                     canCreateTextNoteInView = true;
                     break;
                 case ViewType.Elevation:
-                    Message.Display("This is an Elevation View.\nPlease make sure to set a Workplane to any of the wall faces", WindowType.Information);
+                    canCreateTextNoteInView = true;
+                    break;
+                case ViewType.Section:
                     canCreateTextNoteInView = true;
                     break;
             }
+
+            var userInfo = new TagWallLayersCommandData();
 
             if (!canCreateTextNoteInView)
             {
                 Message.Display("Text Note element can't be created in current view", WindowType.Error);
                 return Result.Cancelled;
+            }
+
+            using (var window = new TagWallLayersForm(uiDoc))
+            {
+                window.ShowDialog();
+
+                if (window.DialogResult == DialogResult.Cancel)
+                {
+                    return Result.Cancelled;
+                }
+
+                userInfo = window.GetInformaion();
             }
 
             var selFilter = new SelectionFilterCategory("Walls");
@@ -64,28 +81,44 @@ namespace Revit_MVVM.Core
                 return Result.Cancelled;
             }
 
-            var pt = uiDoc.Selection.PickPoint("Pick location to place Text Note.");
             var layers = wall.WallType.GetCompoundStructure().GetLayers();
 
-            var msg  = new StringBuilder();
+            var msg = new StringBuilder();
 
             foreach (var layer in layers)
             {
                 var material = doc.GetElement(layer.MaterialId) as Material;
 
-                msg.AppendLine(layer.Function.ToString() + " " + material.Name + " " + layer.Width.ToString());
+                msg.AppendLine();
+
+                if (userInfo.Function)
+                    msg.Append(layer.Function.ToString());
+
+                if (userInfo.Name)
+                    msg.Append(" " + material.Name);
+
+                if (userInfo.Thickness)
+                    msg.Append(" " + layer.Width.ToString());
             }
 
             var textNoteOptions = new TextNoteOptions
             {
                 VerticalAlignment = VerticalTextAlignment.Top,
                 HorizontalAlignment = HorizontalTextAlignment.Left,
-                TypeId =doc.GetDefaultElementTypeId(ElementTypeGroup.TextNoteType),
+                TypeId = userInfo.TextTypeId,
             };
 
             using (var transaction = new Transaction(doc))
             {
                 transaction.Start("Tag Wall Layers Command");
+
+                if (activeView.ViewType == ViewType.Elevation || activeView.ViewType == ViewType.Section)
+                {
+                    var plane = Plane.CreateByNormalAndOrigin(activeView.ViewDirection, activeView.Origin);
+                    var sketchPlane = SketchPlane.Create(doc, plane);
+                    activeView.SketchPlane = sketchPlane;
+                }
+                var pt = uiDoc.Selection.PickPoint("Pick location to place Text Note.");
 
                 var textNote = TextNote.Create(doc, activeView.Id, pt, msg.ToString(), textNoteOptions);
 
