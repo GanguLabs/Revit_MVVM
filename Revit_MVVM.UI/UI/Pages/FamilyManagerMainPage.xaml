@@ -8,12 +8,24 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="FamilyManagerMainPage">
 
-    <Grid Background="CornflowerBlue">
-        <TextBlock Text="Hello from Docable pane..."
-                   Foreground="white"
-                   FontSize="18"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
-                   ></TextBlock>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="Family" 
+                    Command="{Binding FamilyBtnCommand}"/>
+            <Button Grid.Column="1" Content="Preferences"
+                    Command="{Binding PreferencesBtnCommand}"/>
+        </Grid>
+
+        <Border Grid.Row="1" Background="PaleVioletRed" />
     </Grid>
 </Page>

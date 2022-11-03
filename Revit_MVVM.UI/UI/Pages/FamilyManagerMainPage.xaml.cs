@@ -1,4 +1,5 @@
 ﻿using Autodesk.Revit.UI;
+using Revit_MVVM.Core;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,6 +17,8 @@ namespace Revit_MVVM.UI
         public FamilyManagerMainPage()
         {
             InitializeComponent();
+
+            DataContext = new FamilyManagerMainPageViewModel();
         }
 
         public void Dispose()
