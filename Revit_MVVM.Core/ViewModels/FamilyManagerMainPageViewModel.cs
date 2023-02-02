@@ -17,8 +17,8 @@ namespace Revit_MVVM.Core
 
         public FamilyManagerMainPageViewModel()
         {
-            FamilyBtnCommand = new RouteCommands(FamilyBtnExec);
-            PreferencesBtnCommand = new RouteCommands(PreferencesBtnExec);
+            FamilyBtnCommand = new RouteCommands(() => CurrentPage = ApplicationPageType.Family);
+            PreferencesBtnCommand = new RouteCommands(() => CurrentPage = ApplicationPageType.Preferences);
         }
 
         private void FamilyBtnExec()
